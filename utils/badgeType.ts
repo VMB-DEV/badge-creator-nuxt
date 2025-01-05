@@ -13,7 +13,7 @@ export enum StyleType {
 }
 
 
-interface String {
+export interface String {
     matchHexColor(): boolean;
 }
 

@@ -2,7 +2,9 @@
 import logoJson from "~/assets/logo_data.json";
 import {useBadgeStore} from "~/store/badgeStore";
 const logoList = logoJson.list;
+const badgeStore = useBadgeStore();
 
+const colorValue = ref(badgeStore.logoFGColor)
 let logoInput = ref("");
 const filteredLogos = computed(() =>
     logoList.filter(logo =>
@@ -10,7 +12,6 @@ const filteredLogos = computed(() =>
     )
 )
 const showList = ref(false);
-const badgeStore = useBadgeStore();
 const itemClicked = (e) => {
   badgeStore.updateClassicalLogo(e.input)
   logoInput.value = e.option
@@ -21,27 +22,33 @@ const itemClicked = (e) => {
 </script>
 
 <template>
-  <div class="input-container">
-    <input
-        class="input"
-        @focusin="showList = true"
-        @focusout="showList = false"
-        v-model="logoInput"
-        placeholder="edit me"
-    />
-    <div
-        v-if="showList"
-        class="list overflow-y-auto "
-        @mousedown.prevent
-    >
+  <div>
+    <div class="flex">
+      <p>Logo color</p>
+      <ColorsPicker :initial-value="colorValue" :update-color="badgeStore.updateLogoColor"/>
+    </div>
+    <div class="input-container">
+      <input
+          class="input"
+          @focusin="showList = true"
+          @focusout="showList = false"
+          v-model="logoInput"
+          placeholder="search for a logo"
+      />
       <div
           v-if="showList"
-          class="item"
-          v-for="logo in filteredLogos"
-          :key="logo"
-          @mousedown="itemClicked(logo)"
+          class="list overflow-y-auto "
+          @mousedown.prevent
       >
-        <p>{{ logo.option }}</p>
+        <div
+            v-if="showList"
+            class="item"
+            v-for="logo in filteredLogos"
+            :key="logo"
+            @mousedown="itemClicked(logo)"
+        >
+          <p>{{ logo.option }}</p>
+        </div>
       </div>
     </div>
   </div>
