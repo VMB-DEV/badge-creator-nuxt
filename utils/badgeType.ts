@@ -1,4 +1,8 @@
-export enum LogoType { none, normal, custom, }
+export enum LogoType {
+    none =  "no",
+    normal = "normal",
+    custom = "custom",
+}
 export enum ResultType {url, markdown, rSt, AsciiDoc, HTML}
 export enum StyleType {
     flat = "flat",

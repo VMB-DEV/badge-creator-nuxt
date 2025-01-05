@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import PickColors from 'vue-pick-colors'
 import {ref} from "vue";
-const value = ref('#ff0000')
+const props = defineProps({ initialValue: {default : '155515', type: String} })
+const value = ref('#' + props.initialValue)
 </script>
 
 <template>
