@@ -1,28 +1,30 @@
-interface IBadge {
-    rightPartBGColor: string;
-    leftPartBGColor: string;
-    logoFGColor: string;
-    labelsNumber: number;
+import {ResultType, StyleType, LogoType} from "~/utils/badgeType";
+
+export interface IBadge {
     b64Logo: string;
     classicLogo: string;
-    style: StyleType;
-    resultType: ResultType;
-    logoType: LogoType;
     labels: String[];
+    labelsNumber: number;
+    leftPartBGColor: string;
+    logoFGColor: string;
+    logoType: LogoType;
+    resultType: ResultType;
+    rightPartBGColor: string;
+    style: StyleType;
     url: string;
 }
 
 export class BadgeClass implements IBadge {
-    public b64Logo: string;
+    public style: StyleType;
+    public logoType: LogoType;
     public classicLogo: string;
-    public labels: String[];
+    public b64Logo: string;
     public labelsNumber: number;
+    public labels: String[];
     public logoFGColor: string;
     public leftPartBGColor: string;
     public rightPartBGColor: string;
-    public logoType: LogoType;
     public resultType: ResultType;
-    public style: StyleType;
     public url: string;
 
     static readonly DEFAULT_VALUES: IBadge = {
@@ -39,8 +41,9 @@ export class BadgeClass implements IBadge {
         url: "",
     };
 
-    constructor(params: Partial<IBadge> = {}) {
-        const config = { ...BadgeClass.DEFAULT_VALUES, ...params };
+    // constructor(params: Partial<IBadge> = {}) {
+    constructor() {
+        const config = { ...BadgeClass.DEFAULT_VALUES};
         this.validateConfig(config);
 
         this.rightPartBGColor = config.rightPartBGColor;
@@ -51,6 +54,8 @@ export class BadgeClass implements IBadge {
         this.labels = config.labels;
         this.style = config.style;
         this.logoType = config.logoType;
+        this.b64Logo = config.b64Logo;
+        this.resultType = config.resultType;
         this.updateUrl();
     }
 
@@ -116,3 +121,5 @@ export class BadgeClass implements IBadge {
         }
     }
 }
+
+// export d

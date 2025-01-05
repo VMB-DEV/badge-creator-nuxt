@@ -1,4 +1,22 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
-  "extends": "./.nuxt/tsconfig.json"
+  "extends": "./.nuxt/tsconfig.json",
+  "compilerOptions": {
+    "typeRoots": ["./node_modules/@types"],
+    "incremental": true,
+    "skipLibCheck": true
+  }
 }
+//{
+//  "compilerOptions": {
+//    "module": "esnext",
+//    "target": "es6",
+//    "moduleResolution": "node",
+//    "esModuleInterop": true,
+//    "skipLibCheck": true,
+//    "forceConsistentCasingInFileNames": true
+//  },
+//  "include": [
+//    "src/**/*"
+//  ]
+//}

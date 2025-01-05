@@ -5,7 +5,7 @@ console.log("%c Default layouts", "background gray")
 <template>
   <div>
     <header class="shadow-sm bg-white">
-      <NuxtLink to="/" class="font-bold">Nuxt Badge Creator</NuxtLink>
+      <NuxtLink to="/" class="font-bold">Nuxt BadgeClass Creator</NuxtLink>
     </header>
     <div>
       <slot />
