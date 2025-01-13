@@ -1,15 +1,20 @@
 import { defineStore } from 'pinia'
-import { BadgeClass, IBadge } from '~/utils/badgeClass'
-import {LogoType, ResultType, StyleType} from "~/utils/badgeType"
+import { BadgeClass } from '~/utils/badgeClass'
+import {LogoType, ResultType, StyleType, IBadge} from "~/utils/badgeType"
 
 export const useBadgeStore = defineStore('badge', {
     state: (): IBadge => BadgeClass.DEFAULT_VALUES,
     actions: {
+        updateDisplayedLabels(n: number) {
+            this.labelsNumber = n
+            this.updateBadge()
+        },
         updateLabel0(label: string) {
-            console.log(`updateLabel0 to ${label}`);
-            console.log(this.labels);
             this.labels[0] = label
-            console.log(this.labels);
+            this.updateBadge()
+        },
+        updateLabel1(label: string) {
+            this.labels[1] = label
             this.updateBadge()
         },
         updateClassicalLogo(logo: string) {
@@ -42,9 +47,12 @@ export const useBadgeStore = defineStore('badge', {
             const logoColorPart: string = "&logoColor=" + this.logoFGColor
             let logoPart: string = "&logo="
             switch(this.logoType) {
-                case LogoType.normal: logoPart += this.classicLogo; break
-                case LogoType.none: logoPart = ""; break
-                case LogoType.custom: logoPart += "data:image/svg%2bxml;base64," + this.b64Logo; break
+                case LogoType.normal: logoPart += this.classicLogo
+                    break
+                case LogoType.none: logoPart = ""
+                    break
+                case LogoType.custom: logoPart += "data:image/svg%2bxml;base64," + this.b64Logo
+                    break
             }
             let text: string = ""
             if (this.labelsNumber > 0) {text += this.labels.slice(0, this.labelsNumber).join('-')}
@@ -56,15 +64,20 @@ export const useBadgeStore = defineStore('badge', {
             // this.updateUrl()
             switch (this.resultType) {
                 case ResultType.url:
-                    this.result = this.url; break
+                    this.result = this.url
+                    break
                 case ResultType.markdown:
-                    this.result = `![Static Badge](${this.url})`; break
+                    this.result = `![Static Badge](${this.url})`
+                    break
                 case ResultType.rSt:
-                    this.result = `image:: ${this.url}\n:alt: Static Badge\nCommunity`; break
+                    this.result = `image:: ${this.url}\n:alt: Static Badge\nCommunity`
+                    break
                 case ResultType.AsciiDoc:
-                    this.result = `image:${this.url}[Static Badge]`; break
+                    this.result = `image:${this.url}[Static Badge]`
+                    break
                 case ResultType.HTML:
-                    this.result = '<img src=\"' + this.url + '\" alt=\"' + this.labels.join(" ") + "\"/>"; break
+                    this.result = '<img src=\"' + this.url + '\" alt=\"' + this.labels.join(" ") + "\"/>"
+                    break
             }
             console.log(this.result)
         }

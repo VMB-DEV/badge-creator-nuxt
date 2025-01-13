@@ -57,16 +57,14 @@ const inputChange = (e) => {
     </div>
     <LabelInput
         v-if="selected > 0"
-        :initial-value="badgeState.labels[0]"
+        :initial-value="badgeState.labels.at(0)"
         :updater="badgeState.updateLabel0"
     />
-    <input
-        v-if="selected > 0"
-        type="text" name="label1"
-        id="label1"
-        @change="inputChange"
+    <LabelInput
+        v-if="selected > 1"
+        :initial-value="badgeState.labels.at(1)"
+        :updater="badgeState.updateLabel1"
     />
-    <input v-if="selected > 1" type="text" name="label2" id="label2" :value="badgeState.labels.at(1) ?? ''" />
     <div class="flex">
       <p>first part bg</p>
       <ColorsPicker :initial-value="badgeState.leftPartBGColor" :update-color="badgeState.updateLeftPartColor"/>

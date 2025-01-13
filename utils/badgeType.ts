@@ -12,12 +12,26 @@ export enum StyleType {
     social = "social",
 }
 
-
-export interface String {
-    matchHexColor(): boolean;
+export interface IBadge {
+    b64Logo: string
+    classicLogo: string
+    labels: string[]
+    labelsNumber: number
+    leftPartBGColor: string
+    logoFGColor: string
+    logoType: LogoType
+    resultType: ResultType
+    rightPartBGColor: string
+    style: StyleType
+    url: string
+    result: string
 }
 
-String.prototype.matchHexColor = function(): boolean {
-    return this.match(/^[0-9a-fA-F]{3,6}$/)
-    // return /^#[0-9A-F]{6}$/i.test(this.toString());
-};
+// export interface String {
+//     matchHexColor(): boolean;
+// }
+//
+// String.prototype.matchHexColor = function(): boolean {
+//     return this.match(/^[0-9a-fA-F]{3,6}$/)
+//     // return /^#[0-9A-F]{6}$/i.test(this.toString());
+// };

@@ -3,17 +3,17 @@
 const props = defineProps({
   updater: Function as (e: string) => void,
   initialValue: {default : '42', type: String},
-});
+})
 const inputChange = (e) => {
-  const newLabel: string = e.target.value;
+  const newLabel: string = e.target.value
   props.updater(newLabel)
 }
 </script>
 
 <template>
   <input
-      type="text" name="label1"
-      id="label1"
+      type="text"
+      :value="props.initialValue"
       @change="inputChange"
   />
 </template>
