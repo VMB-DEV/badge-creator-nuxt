@@ -1,24 +1,14 @@
 <script setup lang="ts">
-// import { useSharedState } from '~/composables/useState'
-// import { useSharedState } from '~/composables/test'
-// const sharedState = useSharedState()
 import 'vue-search-select/dist/VueSearchSelect.css'
-
 import {useBadgeStore} from "~/store/badgeStore"
-import {storeToRefs} from "pinia"
 import logoJson from "~/assets/logo_data.json"
 import {LogoType} from "../utils/badgeType"
 
 const badgeState = useBadgeStore()
-// console.log("STATE", badgeState)
-// console.log("STATE get", badgeState.logoFGColor)
-// console.log("STATE get", badgeState.leftPartBGColor)
 const selected = ref(2)
 const logoList = logoJson.list
 
 const search = ref('')
-const logo = ref(logoList[0])
-const showList = ref(false)
 
 let logoInput = ref("")
 function filteredList() {
@@ -33,10 +23,6 @@ const filteredLogos = computed(() =>
     )
 )
 const logoType = ref(badgeState.logoType)
-const updateLabelSelection = (e) => {
-  const newLabelsNumber = e.target.value
-  badgeState.updateLabelsNumber(newLabelsNumber)
-}
 </script>
 
 <template>
