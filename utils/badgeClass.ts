@@ -4,7 +4,7 @@ import config from "tailwindcss/defaultConfig";
 export interface IBadge {
     b64Logo: string;
     classicLogo: string;
-    labels: String[];
+    labels: string[];
     labelsNumber: number;
     leftPartBGColor: string;
     logoFGColor: string;
@@ -22,7 +22,7 @@ export class BadgeClass implements IBadge {
     public classicLogo: string;
     public b64Logo: string;
     public labelsNumber: number;
-    public labels: String[];
+    public labels: string[];
     public logoFGColor: string;
     public leftPartBGColor: string;
     public rightPartBGColor: string;

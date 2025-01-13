@@ -1,5 +1,4 @@
 <script setup lang="ts">
-console.log(`%c Home component`, "color red")
 </script>
 
 <template>
