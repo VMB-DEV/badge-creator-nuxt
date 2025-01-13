@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import logoJson from "~/assets/logo_data.json";
-import {useBadgeStore} from "~/store/badgeStore";
-const logoList = logoJson.list;
-const badgeStore = useBadgeStore();
+import logoJson from "~/assets/logo_data.json"
+import {useBadgeStore} from "~/store/badgeStore"
+const logoList = logoJson.list
+const badgeStore = useBadgeStore()
 
 const colorValue = ref(badgeStore.logoFGColor)
-let logoInput = ref("");
+let logoInput = ref("")
 const filteredLogos = computed(() =>
     logoList.filter(logo =>
         logo.option.toLowerCase().includes(logoInput.value.toLowerCase())
     )
 )
-const showList = ref(false);
+const showList = ref(false)
 const itemClicked = (e) => {
   badgeStore.updateClassicalLogo(e.input)
   logoInput.value = e.option
-  showList.value = false;
+  showList.value = false
   // const input = document.querySelector('input');
   // input?.blur();
 }

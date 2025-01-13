@@ -1,63 +1,85 @@
 import { defineStore } from 'pinia'
-import { BadgeClass, IBadge } from '~/utils/badgeClass'
-import {LogoType, ResultType, StyleType} from "~/utils/badgeType";
+import { BadgeClass } from '~/utils/badgeClass'
+import {LogoType, ResultType, StyleType, IBadge} from "~/utils/badgeType"
 
 export const useBadgeStore = defineStore('badge', {
     state: (): IBadge => BadgeClass.DEFAULT_VALUES,
     actions: {
+        updateLabelsNumber(n: number) {
+            this.labelsNumber = n
+            this.updateBadge()
+        },
+        updateLabel0(label: string) {
+            this.labels[0] = label
+            this.updateBadge()
+        },
+        updateLabel1(label: string) {
+            this.labels[1] = label
+            this.updateBadge()
+        },
         updateClassicalLogo(logo: string) {
-            this.classicLogo = logo ;
-            this.updateBadge();
+            this.classicLogo = logo
+            this.updateBadge()
         },
         updateLogoColor(color: string) {
-            this.logoFGColor = color;
-            this.updateBadge();
+            this.logoFGColor = color
+            this.updateBadge()
         },
         updateLeftPartColor(color: string) {
-            this.leftPartBGColor = color;
-            this.updateBadge();
+            this.leftPartBGColor = color
+            this.updateBadge()
         },
         updateRightPartColor(color: string) {
-            this.rightPartBGColor = color;
-            this.updateBadge();
+            this.rightPartBGColor = color
+            this.updateBadge()
         },
         updateB64Logo(b64Logo: string) {
-            this.b64Logo = b64Logo;
-            this.updateBadge();
+            this.b64Logo = b64Logo
+            this.updateBadge()
         },
         updateBadge() {
-            this.updateUrl();
-            this.updateResult();
+            this.updateUrl()
+            this.updateResult()
         },
         updateUrl() {
-            const stylePart: string = "style=" + this.style;
-            const logoBGColorPart: string = "&labelColor=" + this.leftPartBGColor;
-            const logoColorPart: string = "&logoColor=" + this.logoFGColor;
-            let logoPart: string = "&logo=";
+            const stylePart: string = "style=" + this.style
+            const logoBGColorPart: string = "&labelColor=" + this.leftPartBGColor
+            const logoColorPart: string = "&logoColor=" + this.logoFGColor
+            let logoPart: string = "&logo="
             switch(this.logoType) {
-                case LogoType.normal: logoPart += this.classicLogo; break;
-                case LogoType.none: logoPart = ""; break;
-                case LogoType.custom: logoPart += "data:image/svg%2bxml;base64," + this.b64Logo; break;
+                case LogoType.normal: logoPart += this.classicLogo
+                    break
+                case LogoType.none: logoPart = ""
+                    break
+                case LogoType.custom: logoPart += "data:image/svg%2bxml;base64," + this.b64Logo
+                    break
             }
-            let text: string = "";
+            let text: string = ""
             if (this.labelsNumber > 0) {text += this.labels.slice(0, this.labelsNumber).join('-')}
-            const baseUrl: string = "https://img.shields.io/badge/";
+            const baseUrl: string = "https://img.shields.io/badge/"
             this.url = `${baseUrl}${text}-${this.rightPartBGColor}.svg?${stylePart}${logoBGColorPart}${logoColorPart}${logoPart}`
         },
         updateResult() {
-            // this.updateUrl();
+            console.log("updateResult")
+            // this.updateUrl()
             switch (this.resultType) {
                 case ResultType.url:
-                    this.result = this.url; break
+                    this.result = this.url
+                    break
                 case ResultType.markdown:
-                    this.result = `![Static Badge](${this.url})`; break;
+                    this.result = `![Static Badge](${this.url})`
+                    break
                 case ResultType.rSt:
-                    this.result = `image:: ${this.url}\n:alt: Static Badge\nCommunity`; break;
+                    this.result = `image:: ${this.url}\n:alt: Static Badge\nCommunity`
+                    break
                 case ResultType.AsciiDoc:
-                    this.result = `image:${this.url}[Static Badge]`; break;
+                    this.result = `image:${this.url}[Static Badge]`
+                    break
                 case ResultType.HTML:
-                    this.result = '<img src=\"' + this.url + '\" alt=\"' + this.labels.join(" ") + "\"/>"; break;
+                    this.result = '<img src=\"' + this.url + '\" alt=\"' + this.labels.join(" ") + "\"/>"
+                    break
             }
+            console.log(this.result)
         }
     },
 
