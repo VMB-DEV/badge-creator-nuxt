@@ -5,7 +5,7 @@ import {LogoType, ResultType, StyleType, IBadge} from "~/utils/badgeType"
 export const useBadgeStore = defineStore('badge', {
     state: (): IBadge => BadgeClass.DEFAULT_VALUES,
     actions: {
-        updateDisplayedLabels(n: number) {
+        updateLabelsNumber(n: number) {
             this.labelsNumber = n
             this.updateBadge()
         },

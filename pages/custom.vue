@@ -33,28 +33,16 @@ const filteredLogos = computed(() =>
     )
 )
 const logoType = ref(badgeState.logoType)
-const inputChange = (e) => {
-  const newLabel: string = e.target.value
-  console.log(newLabel)
-  badgeState.updateLabel0(newLabel)
-  badgeState.labels[0] = e.target.value
+const updateLabelSelection = (e) => {
+  const newLabelsNumber = e.target.value
+  badgeState.updateLabelsNumber(newLabelsNumber)
 }
 </script>
 
 <template>
   <header class="mx-2">Custom</header>
   <div class="mx-2 flex flex-col w-fit">
-    <div class="flex">
-      <select
-          class="w-fit"
-          v-model="selected"
-      >
-        <option>0</option>
-        <option>1</option>
-        <option>2</option>
-      </select>
-      <p class="mx-2">label{{selected > 1 ? 's' : ''}}</p>
-    </div>
+    <LabelsNumberSelection />
     <LabelInput
         v-if="selected > 0"
         :initial-value="badgeState.labels.at(0)"

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import {useBadgeStore} from "~/store/badgeStore";
+import {useBadgeStore} from "~/store/badgeStore"
 
-const badgeStore = useBadgeStore();
-const svgInput = ref("");
+const badgeStore = useBadgeStore()
+const svgInput = ref("")
 const inputChange = (e) => {
-  console.log(e.target.value);
-  const b64Logo = btoa(svgInput.value);
-  console.log(b64Logo);
+  console.log(e.target.value)
+  const b64Logo = btoa(svgInput.value)
+  console.log(b64Logo)
   // badgeStore.updateB64Logo(b64Logo);
 }
 </script>
