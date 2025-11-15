@@ -6,8 +6,9 @@ const svgInput = ref("")
 const inputChange = (e) => {
   console.log(e.target.value)
   const b64Logo = btoa(svgInput.value)
+  console.log('inputChange', b64Logo)
   console.log(b64Logo)
-  // badgeStore.updateB64Logo(b64Logo);
+  badgeStore.updateB64Logo(b64Logo);
 }
 </script>
 
@@ -15,7 +16,7 @@ const inputChange = (e) => {
   <div class="flex-col">
     <input
         v-model="svgInput"
-        placeholder="enter an svg <sv"
+        placeholder="enter an svg <svg>"
         @change="inputChange"
     />
   </div>

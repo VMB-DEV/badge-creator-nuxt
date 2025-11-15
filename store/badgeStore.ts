@@ -37,6 +37,10 @@ export const useBadgeStore = defineStore('badge', {
             this.b64Logo = b64Logo
             this.updateBadge()
         },
+        updateLogoType(logoType: LogoType) {
+            this.logoType = logoType
+            this.updateBadge()
+        },
         updateBadge() {
             this.updateUrl()
             this.updateResult()
